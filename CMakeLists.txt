@@ -6,7 +6,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
-set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+if(NOT MSVC)
+  set(CMAKE_CXX_FLAGS_RELEASE "-O2")
+endif()
 
 # REFACTORING_STRATEGY.md §8: core/operators/control/ga/io build into one static
 # library shared by both binaries; app/main_*.cpp link against it plus their own
