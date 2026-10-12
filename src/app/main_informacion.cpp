@@ -38,7 +38,8 @@ using namespace ggacgt;
 int main() {
     try {
         paths::ensureOutputDirectories(
-            {"Solutions_GGA-CGT", "Details_GGA-CGT", "Repeated_Fitness", "Mutation_reps", "Ratios_bins"});
+            {paths::outputDir("Solutions_GGA-CGT"), paths::outputDir("Details_GGA-CGT"),
+             paths::outputDir("Repeated_Fitness"), paths::outputDir("Mutation_reps"), paths::outputDir("Ratios_bins")});
 
         auto configs = loadConfigurations("configurations.txt");
         auto instancePaths = loadInstanceList("instances.txt");
@@ -46,7 +47,10 @@ int main() {
         for (const auto& config : configs) {
             SummaryWriter summaryWriter(config.gaParams, config.initialParams);
 
-            for (const auto& instancePath : instancePaths) {
+            for (std::size_t idx = 0; idx < instancePaths.size(); ++idx) {
+                const std::string& instancePath = instancePaths[idx];
+                std::cout << "[conf " << config.gaParams.configId << "] (" << (idx + 1) << "/"
+                          << instancePaths.size() << ") " << instancePath << " ... " << std::flush;
                 BppInstance instance = loadInstance(instancePath);
                 LowerBoundResult lb = computeLowerBound(instance);
 
@@ -76,6 +80,9 @@ int main() {
                                                    result.generationFound, totalTime, result.deletedBins,
                                                    result.deletedItems, result.realizedCrossovers,
                                                    result.realizedMutations);
+
+                std::cout << "L2=" << lb.L2 << " bins=" << result.bestSolution.binsUsed
+                          << " gen=" << result.generationFound << " time=" << totalTime << "s" << std::endl;
 
                 if (config.gaParams.saveBestSolution) {
                     writeSolutionDetail(config.gaParams.configId, instancePath, instance, lb.L2,

@@ -114,7 +114,8 @@ The programs take no command-line arguments. They read two files from the
 - `configurations.txt`
 - `instances.txt`
 
-They also write their output directories into the current working directory. Run them
+They write all their output into a `results/` directory inside the current working
+directory. Run them
 from the folder that holds those files, for example the repository root:
 
 ```bash
@@ -122,7 +123,14 @@ from the folder that holds those files, for example the repository root:
 ./build/gga-cgt-info-hh     # adaptive parameters
 ```
 
-Every configuration line is run on every instance listed in `instances.txt`.
+Every configuration line is run on every instance listed in `instances.txt`. The
+terminal shows one progress line per instance when that instance finishes. A single
+instance can take several seconds, so a run over many instances takes minutes. The
+full results are written to the files described in [Output](#output).
+
+```
+[conf 1] (1/28) data/standarized_instances/Hard28/Hard28_BPP561.txt ... L2=72 bins=73 gen=500 time=6.59s
+```
 
 ### `configurations.txt`
 
@@ -179,16 +187,16 @@ loader rescales them to integers automatically.
 
 ### Output
 
-All output directories are created automatically in the working directory.
+All output directories are created automatically under `results/` in the working directory.
 
 | Path | Variant | Contents |
 |---|---|---|
-| `Solutions_GGA-CGT/GGA-CGT_(<conf>).txt` | both | Summary with one row per instance: `L2`, bins used, generation where the optimum was found (`max_gen` if it was not found), time in seconds, deleted bins and items, and the number of crossovers and mutations performed |
-| `Details_GGA-CGT/GGA-CGT_S_(<conf>)_<instance>` | both, if `save_bestSolution = 1` | Best solution: fullness, gap and items of each bin |
-| `Repeated_Fitness/gene_detail_(<conf>)_<instance>` | both | Per-generation trace: repeated fitness counts, best, worst and average fitness |
-| `Mutation_reps/gene_detail_muta(<conf>)_<instance>` | adaptive | Per-generation statistics for mutation and crossover, plus the adapted `p_c` and `p_m` |
-| `Ratios_bins/gene_detail_ratio(<conf>)_<instance>` | adaptive | Full-bin ratios of the best, worst and average individuals |
-| `Details_GGA-CGT/detalle_solucion_<instance>_conf(<conf>).txt` | adaptive | Population dump, written when the search stagnates |
+| `results/Solutions_GGA-CGT/GGA-CGT_(<conf>).txt` | both | Summary with one row per instance: `L2`, bins used, generation where the optimum was found (`max_gen` if it was not found), time in seconds, deleted bins and items, and the number of crossovers and mutations performed |
+| `results/Details_GGA-CGT/GGA-CGT_S_(<conf>)_<instance>` | both, if `save_bestSolution = 1` | Best solution: fullness, gap and items of each bin |
+| `results/Repeated_Fitness/gene_detail_(<conf>)_<instance>` | both | Per-generation trace: repeated fitness counts, best, worst and average fitness |
+| `results/Mutation_reps/gene_detail_muta(<conf>)_<instance>` | adaptive | Per-generation statistics for mutation and crossover, plus the adapted `p_c` and `p_m` |
+| `results/Ratios_bins/gene_detail_ratio(<conf>)_<instance>` | adaptive | Full-bin ratios of the best, worst and average individuals |
+| `results/Details_GGA-CGT/detalle_solucion_<instance>_conf(<conf>).txt` | adaptive | Population dump, written when the search stagnates |
 
 ## Golden tests
 

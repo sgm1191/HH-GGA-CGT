@@ -85,7 +85,7 @@ cp "$HH_DIR/build/gga-cgt-info-hh" "$WORKDIR/hh/"
 # save_bestSolution=0 (it affects the config loop, unrelated to bug #2 above) -- take
 # only the FIRST data row.
 ORIG_ROW="$(grep "^$BASENAME" "$WORKDIR/orig/Solutions_GGA-CGT/GGA-CGT_(1).txt" | head -1)"
-HH_ROW="$(grep "^$BASENAME" "$WORKDIR/hh/Solutions_GGA-CGT/GGA-CGT_(1).txt" | head -1)"
+HH_ROW="$(grep "^$BASENAME" "$WORKDIR/hh/results/Solutions_GGA-CGT/GGA-CGT_(1).txt" | head -1)"
 
 if [ -z "$ORIG_ROW" ]; then
     echo "error: original produced no summary row (see $WORKDIR/orig/run.log before it's cleaned up -- rerun without the trap to inspect)" >&2

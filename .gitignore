@@ -39,6 +39,9 @@
 *.out
 *.app
 
+# Run output
+results/
+
 # Build directories
 build/
 Build/

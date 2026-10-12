@@ -11,6 +11,10 @@ namespace ggacgt::paths {
 // CHANGES.md (REFACTORING_STRATEGY.md §7.6). `std::filesystem::path` composition can't
 // overflow and doesn't need a `file_base`-style manual `strrchr` to strip directories.
 
+// Every output directory lives under results/ (relative to the working directory),
+// keeping the project root free of run artifacts. All paths below are inside it.
+std::filesystem::path outputDir(const std::string& name);
+
 // The filename component of an instance path (original: `file_base`, computed once per
 // instance via `strrchr(file, '/')`).
 std::string baseName(const std::string& instancePath);

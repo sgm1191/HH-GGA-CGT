@@ -61,7 +61,7 @@ cp "$HH_DIR/build/gga-cgt-hh" "$WORKDIR/hh/"
 ( cd "$WORKDIR/hh" && timeout 120 ./gga-cgt-hh < /dev/null > run.log 2>&1 )
 
 ORIG_ROW="$(sed -n '4p' "$WORKDIR/orig/Solutions_GGA-CGT/GGA-CGT_(1).txt")"
-HH_ROW="$(sed -n '4p' "$WORKDIR/hh/Solutions_GGA-CGT/GGA-CGT_(1).txt")"
+HH_ROW="$(sed -n '4p' "$WORKDIR/hh/results/Solutions_GGA-CGT/GGA-CGT_(1).txt")"
 
 # Fields (whitespace-split): 0=instance 1=L2 2=bins 3=gen 4=time 5=delbins 6=delitems
 # 7=crosses 8=mutations. Compare all except field 4 (wall-clock time), which is
