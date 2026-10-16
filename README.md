@@ -9,6 +9,15 @@ reimplementation of GGA-CGT. Its components (initializer, crossover, mutation an
 parameter controller) are interchangeable, so you can compose different algorithm
 variants from the same engine.
 
+The adaptive variant implements the algorithm described in Amador-Larrea et al. (2026),
+*An Adaptive Grouping Genetic Algorithm with Controlled Gene Transmission Based on
+Fullness and Item Strategies (AGGA-CGT-FIS)*. The paper is in [docs/](docs/). If you
+use this code, please cite that work (see [Citation](#citation)).
+
+> **Status:** this repository is the baseline for my PhD research. It currently holds
+> only the implementation of the published algorithm and contains no new contributions
+> yet. I keep it here to track the starting point of the investigation.
+
 ## Functionality
 
 ### The algorithm
@@ -68,6 +77,7 @@ src/
 tests/
   unit/       Unit tests (lower bound, operators, schedules, adaptive controller)
   golden/     Scripts that compare output against the original GGA-CGT binaries
+docs/         Reference paper (AGGA-CGT-FIS) and its BibTeX entry (cite.bib)
 ```
 
 ## Requirements
@@ -212,3 +222,32 @@ tests/golden/run_golden.sh data/.../BPP.5_100_23.txt 20 30 0.83 0.2 1.3 4.0 0.1 
 
 [CHECKLIST.md](CHECKLIST.md) records the refactoring progress and the known
 differences from the original implementation.
+
+## Citation
+
+This code implements the algorithm from the following paper. If you use it in your
+research, please cite the original work:
+
+> S. Amador-Larrea, M. Quiroz-Castellanos, O. Ramos-Figueroa and A. Guerra-Hernández,
+> "An Adaptive Grouping Genetic Algorithm with Controlled Gene Transmission Based on
+> Fullness and Item Strategies (AGGA-CGT-FIS)," *Mathematical and Computational
+> Applications*, vol. 31, no. 2, p. 34, 2026.
+
+```bibtex
+@article{amador2026adaptive,
+  title={An Adaptive Grouping Genetic Algorithm with Controlled Gene Transmission Based on Fullness and Item Strategies (AGGA-CGT-FIS)},
+  author={Amador-Larrea, Stephanie and Quiroz-Castellanos, Marcela and Ramos-Figueroa, Octavio and Guerra-Hern{\'a}ndez, Alejandro},
+  journal={Mathematical and Computational Applications},
+  volume={31},
+  number={2},
+  pages={34},
+  year={2026},
+  publisher={MDPI}
+}
+```
+
+The same entry is in [docs/cite.bib](docs/cite.bib).
+
+## License
+
+This code is released under the [MIT License](LICENSE).
